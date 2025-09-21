@@ -1,0 +1,119 @@
+/* Fade-in sections */
+html{
+   scroll-behavior: smooth;
+}
+
+html, body, h1, h2, h3, h4, h5, h6, p, a, span {
+  font-family: 'Inter', sans-serif;
+}
+
+.fade-in {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 1s ease-out;
+}
+.fade-in.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Navbar links underline animation */
+.nav-link {
+  position: relative;
+}
+.nav-link::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #c49b66; /* gold */
+  transition: width 0.3s ease;
+}
+.nav-link:hover::after {
+  width: 100%;
+}
+
+/* Animated gradient background */
+section {
+  background-size: 200% 200%;
+  animation: gradientBG 20s ease infinite;
+}
+@keyframes gradientBG {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Lightbox cursor */
+#lightbox img {
+  cursor: pointer;
+}
+
+/* Navy accent animated scroll button */
+.scroll-btn {
+  position: fixed;
+  width: 64px;
+  height: 64px;
+  border: 4px solid transparent;
+  border-radius: 12px;
+  background-color: #0b1e3b; /* navy background */
+  color: #ffbf00; /* amber text/icon */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  overflow: hidden;
+  box-shadow: 0 0 0 2px #ffbf00;
+  transition: all 0.5s ease-in-out;
+  z-index: 50;
+}
+
+.scroll-btn:hover {
+  background-color: #050A20; /* darker navy on hover */
+  box-shadow: 0 0 0 12px transparent, 0 0 15px #ffbf00; /* amber glow */
+  border-radius: 16px;
+}
+
+.scroll-btn:active {
+  transform: scale(0.95);
+}
+
+/* Circle effect inside button */
+.scroll-btn .circle {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 20px;
+  height: 20px;
+  background-color: #ffbf00;
+  border-radius: 50%;
+  opacity: 0;
+  transform: translate(-50%, -50%);
+  transition: all 0.5s ease-in-out;
+}
+
+.scroll-btn:hover .circle {
+  width: 220px;
+  height: 220px;
+  opacity: 0.1;
+}
+
+/* Arrow inside button */
+.scroll-btn .arrow {
+  font-size: 24px;
+  z-index: 10;
+  transition: all 0.5s ease-in-out;
+}
+
+.scroll-btn.up {
+  bottom: 80px;
+  right: 32px;
+}
+
+.scroll-btn.down {
+  bottom: 16px;
+  right: 50%;
+  transform: translateX(50%);
+}
