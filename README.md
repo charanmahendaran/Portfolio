@@ -1,10 +1,6 @@
 # 🌐 Personal Portfolio Website
 
 <p align="center">
-  <img src="assets/preview.png" width="700"/>
-</p>
-
-<p align="center">
   <a href="https://portfolio-d6803.web.app/">
     <img src="https://img.shields.io/badge/Live-Demo-green?style=for-the-badge"/>
   </a>
