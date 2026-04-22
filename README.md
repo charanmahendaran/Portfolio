@@ -1,13 +1,10 @@
 # 🌐 Personal Portfolio Website
 
 <p align="center">
-  <a href="https://portfolio-d6803.web.app/">
-    <img src="https://img.shields.io/badge/Live-Demo-green?style=for-the-badge"/>
+  <a href="https://portfolio-d6803.web.app/" target="_blank">
+    <img src="https://img.shields.io/badge/View%20Live%20Portfolio-0A66C2?style=for-the-badge&logo=google-chrome&logoColor=white"/>
   </a>
-  <img src="https://img.shields.io/badge/Made%20with-HTML%20CSS%20JS-blue?style=for-the-badge"/>
-  <img src="https://img.shields.io/badge/Status-Active-success?style=for-the-badge"/>
 </p>
-
 ---
 
 ## 🚀 Overview
