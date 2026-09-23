@@ -1,0 +1,79 @@
+[debug] [2025-10-06T10:20:53.580Z] ----------------------------------------------------------------------
+[debug] [2025-10-06T10:20:53.586Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\Kousheek Mahendaran\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js deploy --only hosting --debug
+[debug] [2025-10-06T10:20:53.587Z] CLI Version:   14.18.0
+[debug] [2025-10-06T10:20:53.587Z] Platform:      win32
+[debug] [2025-10-06T10:20:53.587Z] Node Version:  v22.19.0
+[debug] [2025-10-06T10:20:53.588Z] Time:          Mon Oct 06 2025 15:50:53 GMT+0530 (India Standard Time)
+[debug] [2025-10-06T10:20:53.588Z] ----------------------------------------------------------------------
+[debug] 
+[debug] [2025-10-06T10:20:54.081Z] > command requires scopes: ["email","openid","https://www.googleapis.com/auth/cloudplatformprojects.readonly","https://www.googleapis.com/auth/firebase","https://www.googleapis.com/auth/cloud-platform"]
+[debug] [2025-10-06T10:20:54.084Z] > authorizing via signed-in user (charanmahendaran@gmail.com)
+[debug] [2025-10-06T10:20:54.085Z] [iam] checking project portfolio-d6803 for permissions ["firebase.projects.get","firebasehosting.sites.update"]
+[debug] [2025-10-06T10:20:54.087Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:54.088Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:54.092Z] >>> [apiv2][query] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-d6803:testIamPermissions [none]
+[debug] [2025-10-06T10:20:54.093Z] >>> [apiv2][(partial)header] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-d6803:testIamPermissions x-goog-quota-user=projects/portfolio-d6803
+[debug] [2025-10-06T10:20:54.094Z] >>> [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-d6803:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-10-06T10:20:56.141Z] <<< [apiv2][status] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-d6803:testIamPermissions 200
+[debug] [2025-10-06T10:20:56.143Z] <<< [apiv2][body] POST https://cloudresourcemanager.googleapis.com/v1/projects/portfolio-d6803:testIamPermissions {"permissions":["firebase.projects.get","firebasehosting.sites.update"]}
+[debug] [2025-10-06T10:20:56.146Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:56.146Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:56.148Z] >>> [apiv2][query] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-d6803 [none]
+[debug] [2025-10-06T10:20:56.630Z] <<< [apiv2][status] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-d6803 200
+[debug] [2025-10-06T10:20:56.632Z] <<< [apiv2][body] GET https://firebase.googleapis.com/v1beta1/projects/portfolio-d6803 {"projectId":"portfolio-d6803","projectNumber":"139065916788","displayName":"Portfolio","name":"projects/portfolio-d6803","resources":{"hostingSite":"portfolio-d6803"},"state":"ACTIVE","etag":"1_954c6d7e-ec81-4383-bc0d-d6fc29534e7a"}
+[info] 
+[info] === Deploying to 'portfolio-d6803'...
+[info] 
+[info] i  deploying hosting 
+[debug] [2025-10-06T10:20:56.655Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:56.660Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:56.662Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/versions [none]
+[debug] [2025-10-06T10:20:56.663Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/versions {"status":"CREATED","labels":{"deployment-tool":"cli-firebase"}}
+[debug] [2025-10-06T10:20:58.158Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/versions 200
+[debug] [2025-10-06T10:20:58.190Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/versions {"name":"projects/139065916788/sites/portfolio-d6803/versions/0298f91f8627698c","status":"CREATED","config":{},"labels":{"deployment-tool":"cli-firebase"}}
+[info] i  hosting[portfolio-d6803]: beginning deploy... 
+[info] i  hosting[portfolio-d6803]: found 19 files in . 
+[debug] [2025-10-06T10:20:58.280Z] [hosting] uploading with 200 concurrency
+[debug] [2025-10-06T10:20:58.292Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:58.292Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:58.295Z] [hosting] hash cache [] stored for 19 files
+[debug] [2025-10-06T10:20:58.296Z] [hosting][hash queue][FINAL] {"max":6,"min":1,"avg":1,"active":0,"complete":19,"success":19,"errored":0,"retried":0,"total":19,"elapsed":13}
+[debug] [2025-10-06T10:20:58.298Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/139065916788/sites/portfolio-d6803/versions/0298f91f8627698c:populateFiles [none]
+[debug] [2025-10-06T10:20:58.299Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/139065916788/sites/portfolio-d6803/versions/0298f91f8627698c:populateFiles {"files":{"/style.css":"8ab665ba643516d06a4b6a29d10c0309d1f4e78361bc01bca939820c42193038","/start-pg.html":"ab147cfdaaf5372fc3ed11878c0f2c7710f9380f849a2f2c27a8ac970e4cadd0","/script1.js":"1dc546e89190388fc18e334548d3c93504a49297226e4c2a2929985ee4c86d9a","/script.js":"a367004559318e4b6b5e3c75f6c3d725d343b00688722be3232d4e138b387fbd","/index.html":"fc82e9adfed3b6b0a1b0e7b768a288cf871c55b68eebc961629f657e60ceee76","/404.html":"762bf484ba67404bd1a3b181546ea28d60dfddf18e9dd4795d8d25bcf3c1a890","/assets/images/up-arrow.jpg":"a8d1cb6f1a5a3fb1787d07b3cd11c57f4fc8a60acc7325c00dd771b7f6d5153c","/assets/images/project3.jpg":"684ba6c67690e80d0480ff41f115fea240ec3795ae84d6fe6ce366311ffb0b2f","/assets/images/project2.jpg":"91588964a1cdb773d0c084c2209bdcabf0f666df7557e98147af99cb5c4346f0","/assets/images/project1.jpg":"ebcd7eb838a7bb80a99b75575789a4ed95f4e4efe5c2691a3d719028a21ed5ba","/assets/images/profile.jpg":"017f2239e7f9c7f28f49dc8dd1fe7518a149bf046d6f58e0cad7f930579b9960","/assets/images/mail.jpg":"a70508fed1857f15c0c14d0010361709af21b7fc5f38129acdfe04ec3e05b736","/assets/images/linkedin.jpg":"9d4c028c01afce71cf02858e082f8edf005897ff669271ae0b7ba96a87385975","/assets/images/github.jpg":"de6fdd8b0294658b9926a342d2cd1fa9ed078aa774ac336c58448d960f340e08","/assets/images/down-arrow.jpg":"56d68afb6cd439e50af817099023c430f0c3f59a0e0a6d629b45266aafe929c2","/assets/images/cert3.jpg":"9e0829494411bc756a0b8783a0694ae1bfd9df2c60df19a61e66237828781401","/assets/images/cert2.jpg":"08e389b8f30ff358bd59ea31dbf2d329ba2c1ee7ad83162afcffad741feff87f","/assets/images/cert1.jpg":"7c7b9a11489eb39df10d3132d7e7ec8fb9c274a269b5250517940699f6b75bfa","/assets/images/call.jpg":"7a0635a12e872ac2884ec3e8371620521db5db26950850fc9064d8729713fe23"}}
+[debug] [2025-10-06T10:20:58.804Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/139065916788/sites/portfolio-d6803/versions/0298f91f8627698c:populateFiles 200
+[debug] [2025-10-06T10:20:58.806Z] <<< [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/139065916788/sites/portfolio-d6803/versions/0298f91f8627698c:populateFiles {"uploadUrl":"https://upload-firebasehosting.googleapis.com/upload/sites/portfolio-d6803/versions/0298f91f8627698c/files"}
+[debug] [2025-10-06T10:20:58.808Z] [hosting][populate queue][FINAL] {"max":517,"min":517,"avg":517,"active":0,"complete":1,"success":1,"errored":0,"retried":0,"total":1,"elapsed":517}
+[debug] [2025-10-06T10:20:58.810Z] [hosting] uploads queued: 0
+[debug] [2025-10-06T10:20:58.812Z] [hosting][upload queue][FINAL] {"max":0,"min":9999999999,"avg":0,"active":0,"complete":0,"success":0,"errored":0,"retried":0,"total":0,"elapsed":1759746058812}
+[info] i  hosting: upload complete 
+[info] +  hosting[portfolio-d6803]: file upload complete 
+[debug] [2025-10-06T10:20:58.820Z] [hosting] deploy completed after 605ms
+[debug] [2025-10-06T10:20:58.828Z] [
+  {
+    "config": {
+      "public": ".",
+      "ignore": [
+        "firebase.json",
+        "**/.*",
+        "**/node_modules/**"
+      ],
+      "site": "portfolio-d6803"
+    },
+    "version": "projects/139065916788/sites/portfolio-d6803/versions/0298f91f8627698c"
+  }
+]
+[info] i  hosting[portfolio-d6803]: finalizing version... 
+[debug] [2025-10-06T10:20:58.850Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:58.864Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:58.865Z] >>> [apiv2][query] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/versions/0298f91f8627698c updateMask=status%2Cconfig
+[debug] [2025-10-06T10:20:58.872Z] >>> [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/versions/0298f91f8627698c {"status":"FINALIZED","config":{}}
+[debug] [2025-10-06T10:20:59.549Z] <<< [apiv2][status] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/versions/0298f91f8627698c 200
+[debug] [2025-10-06T10:20:59.554Z] <<< [apiv2][body] PATCH https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/versions/0298f91f8627698c {"name":"projects/139065916788/sites/portfolio-d6803/versions/0298f91f8627698c","status":"FINALIZED","config":{},"labels":{"deployment-tool":"cli-firebase"},"createTime":"2025-10-06T10:20:56.855422Z","createUser":{"email":"charanmahendaran@gmail.com"},"finalizeTime":"2025-10-06T10:20:58.601081Z","finalizeUser":{"email":"charanmahendaran@gmail.com"}}
+[debug] [2025-10-06T10:20:59.558Z] [hosting] finalized version for portfolio-d6803:[object Object]
+[info] +  hosting[portfolio-d6803]: version finalized 
+[info] i  hosting[portfolio-d6803]: releasing new version... 
+[debug] [2025-10-06T10:20:59.562Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:59.564Z] Checked if tokens are valid: true, expires at: 1759748644322
+[debug] [2025-10-06T10:20:59.565Z] >>> [apiv2][query] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/channels/live/releases versionName=projects%2F139065916788%2Fsites%2Fportfolio-d6803%2Fversions%2F0298f91f8627698c
+[debug] [2025-10-06T10:20:59.572Z] >>> [apiv2][body] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/channels/live/releases {}
+[debug] [2025-10-06T10:21:00.118Z] <<< [apiv2][status] POST https://firebasehosting.googleapis.com/v1beta1/projects/-/sites/portfolio-d6803/channels/live/releases 200

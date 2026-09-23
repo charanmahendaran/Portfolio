@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Welcome Page</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          keyframes: {
+            slideUp: {
+              '0%': { transform: 'translateY(20px)', opacity: '0' },
+              '100%': { transform: 'translateY(0)', opacity: '1' },
+            },
+          },
+          animation: {
+            slideUp: 'slideUp 0.8s ease-out forwards',
+          },
+        }
+      }
+    }
+  </script>
+
+  <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js">
+  </script>
+  <script type="text/javascript">
+      (function () {
+        emailjs.init({
+          publicKey: "JkHHIfez2vAG1uhhL",
+        });
+      })();
+  </script>
+
+  <style>
+    h2 {
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    }
+
+    /* From Uiverse.io by adamgiebl */
+    .cssbuttons-io {
+      position: relative;
+      font-family: inherit;
+      font-weight: 500;
+      font-size: 18px;
+      letter-spacing: 0.05em;
+      border-radius: 0.8em;
+      cursor: pointer;
+      border: none;
+      background: linear-gradient(to right, #10B981, #10B981);
+      color: ghostwhite;
+      overflow: hidden;
+    }
+
+    .cssbuttons-io svg {
+      width: 1.2em;
+      height: 1.2em;
+      margin-right: 0.5em;
+    }
+
+    .cssbuttons-io span {
+      position: relative;
+      z-index: 10;
+      transition: color 0.4s;
+      display: inline-flex;
+      align-items: center;
+      padding: 0.8em 1.2em 0.8em 1.05em;
+    }
+
+    .cssbuttons-io::before,
+    .cssbuttons-io::after {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+    }
+
+    .cssbuttons-io::before {
+      content: "";
+      background: #000;
+      width: 120%;
+      left: -10%;
+      transform: skew(30deg);
+      transition: transform 0.4s cubic-bezier(0.3, 1, 0.8, 1);
+    }
+
+    .cssbuttons-io:hover::before {
+      transform: translate3d(100%, 0, 0);
+    }
+
+    .cssbuttons-io:active {
+      transform: scale(0.95);
+    }
+  </style>
+</head>
+
+<body
+  class="bg-gradient-to-r from-[#F3904F] to-[#3B4371] flex flex-col md:flex-row items-center justify-center min-h-screen">
+
+  <div class="max-w-sm md:max-w-md mx-auto bg-white/30 rounded-xl shadow-lg overflow-hidden 
+              animate-slideUp hover:shadow-4xl transform hover:scale-105 hover:translate-y-2
+              hover:border border-amber-800 transition-all duration-300">
+    <div class="text-center justify-center p-6">
+      <h2 class="text-2xl font-semibold justify-center mb-5 text-black">Hi there, want to check my portfolio?</h2>
+      <button id="openPopup" type="submit"
+        class="flex justify-center gap-2 items-center mx-auto shadow-xl text-lg bg-gray-50 backdrop-blur-md lg:font-semibold isolation-auto border-gray-50 before:absolute before:w-full before:transition-all before:duration-700 before:hover:w-full before:-left-full before:hover:left-0 before:rounded-full before:bg-emerald-500 hover:text-gray-50 before:-z-10 before:aspect-square before:hover:scale-150 before:hover:duration-700 relative z-10 px-4 py-2 overflow-hidden border-2 rounded-full group">
+        Explore
+        <svg
+          class="w-8 h-8 justify-end group-hover:rotate-90 group-hover:bg-gray-50 text-gray-50 ease-linear duration-300 rounded-full border border-gray-700 group-hover:border-none p-2 rotate-45"
+          viewBox="0 0 16 19" xmlns="http://www.w3.org/2000/svg">
+          <path
+            d="M7 18C7 18.5523 7.44772 19 8 19C8.55228 19 9 18.5523 9 18H7ZM8.70711 0.292893C8.31658 -0.0976311 7.68342 -0.0976311 7.29289 0.292893L0.928932 6.65685C0.538408 7.04738 0.538408 7.68054 0.928932 8.07107C1.31946 8.46159 1.95262 8.46159 2.34315 8.07107L8 2.41421L13.6569 8.07107C14.0474 8.46159 14.6805 8.46159 15.0711 8.07107C15.4616 7.68054 15.4616 7.04738 15.0711 6.65685L8.70711 0.292893ZM9 18L9 1H7L7 18H9Z"
+            class="fill-gray-800 group-hover:fill-gray-800"></path>
+        </svg>
+      </button>
+    </div>
+  </div>
+
+  <!-- Popup Form -->
+  <div id="popup" class="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
+    <div class="bg-white bg-opacity-70 backdrop-blur-sm rounded-xl p-6 
+              w-11/12 sm:w-[22rem] md:w-[22rem] lg:w-[26rem] 
+              relative animate-slideUp">
+
+      <!-- Close Button -->
+      <button id="closePopup"
+        class="absolute top-2 right-2 text-gray-500 hover:text-gray-800 text-2xl font-bold">&times;</button>
+
+      <!-- Form Content -->
+      <h2 class="text-xl font-semibold mb-4 text-center">Enter your name</h2>
+      <form id="userForm" class="flex flex-col">
+        <input id="nameInput" type="text" placeholder="Enter your name" required
+          class="border rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-green-400">
+
+        <h2 class="text-xl font-semibold mb-4 text-center">Enter your email</h2>
+        <input id="emailInput" type="email" placeholder="Enter your email" required
+          class="border rounded px-3 py-2 mb-4 focus:outline-none focus:ring-2 focus:ring-green-400">
+
+        <button class="cssbuttons-io" onclick="sendMail()">
+          <span>Submit</span>
+        </button>
+      </form>
+
+    </div>
+  </div>
+  <script src="./script1.js"></script>
+
+  <script>
+    //const PORTFOLIO_LINK = "./portfolio.html"; // <-- Replace with your portfolio link
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const openBtn = document.getElementById('openPopup');
+      const popup = document.getElementById('popup');
+      const closeBtn = document.getElementById('closePopup');
+      const form = document.getElementById('userForm');
+
+      // Open popup
+      openBtn.addEventListener('click', () => {
+        popup.classList.remove('hidden');
+      });
+
+      // Close popup
+      closeBtn.addEventListener('click', () => {
+        popup.classList.add('hidden');
+      });
+
+      // Close when clicking outside the card
+      popup.addEventListener('click', (e) => {
+        if (e.target === popup) {
+          popup.classList.add('hidden');
+        }
+      });
+
+      // Handle form submission (just redirect)
+      form.addEventListener('submit', (e) => {
+        e.preventDefault();
+        const userForm = form.querySelector('input[type="email"]').value;
+        // Get current date and time
+        const now = new Date();
+        const timestamp = now.toLocaleString();
+        alert(`Email submitted: ${userEmail}`);
+        window.location.href = "portfolio.html";
+      });
+    });
+  </script>
+</body>
+
+</html>
