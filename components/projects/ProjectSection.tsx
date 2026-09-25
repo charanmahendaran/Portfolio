@@ -2,7 +2,7 @@ import { projects } from "@/data/projects";
 
 export default function ProjectSection() {
   return (
-    <section id="work" className="section section-border">
+    <section id="work" className="section">
       <div className="container-main">
         <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
           <div>
@@ -18,23 +18,23 @@ export default function ProjectSection() {
           </span>
         </div>
 
-        <div className="mt-16 space-y-4">
+        <div className="mt-16">
           {projects.map((project) => (
             <article
               key={project.number}
-              className="group border-y border-white/10 py-8 transition-colors duration-300 hover:bg-white/[0.025] md:py-10"
+              className="group border-t border-white/10 py-9 transition-colors duration-300 hover:bg-white/[0.02] md:py-11"
             >
-              <div className="grid gap-6 md:grid-cols-[80px_1fr_1.5fr_160px] md:items-center">
+              <div className="grid gap-6 md:grid-cols-[70px_1fr_1.4fr_150px] md:items-start">
                 <span className="font-mono text-xs text-white/25">
                   {project.number}
                 </span>
 
                 <div>
-                  <h3 className="text-2xl font-medium tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-2 md:text-4xl">
+                  <h3 className="text-2xl font-medium tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-1 md:text-4xl">
                     {project.title}
                   </h3>
 
-                  <p className="mt-2 text-[10px] uppercase tracking-[0.15em] text-white/30">
+                  <p className="mt-2 text-[9px] uppercase tracking-[0.15em] text-white/30">
                     {project.category}
                   </p>
                 </div>

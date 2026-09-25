@@ -5,6 +5,8 @@ import Hero from "@/components/hero/Hero";
 import Statement from "@/components/statement/Statement";
 import TechSystem from "@/components/tech/TechSystem";
 import ProjectSection from "@/components/projects/ProjectSection";
+import Experience from "@/components/experience/Experience";
+import Education from "@/components/education/Education";
 import Credentials from "@/components/credentials/Credentials";
 import About from "@/components/about/About";
 import Contact from "@/components/contact/Contact";
@@ -18,11 +20,21 @@ export default function Home() {
 
       <main>
         <Hero />
+
         <Statement />
+
         <TechSystem />
+
         <ProjectSection />
+
+        <Experience />
+
+        <Education />
+
         <Credentials />
+
         <About />
+
         <Contact />
       </main>
 

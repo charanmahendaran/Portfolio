@@ -2,36 +2,57 @@ export default function Hero() {
   return (
     <section
       id="top"
-      className="relative flex min-h-screen items-end overflow-hidden pb-16 pt-32"
+      className="relative min-h-[100svh] overflow-hidden pt-[64px]"
     >
-      <div className="container-main relative z-10">
-        <div className="mb-8 flex items-center gap-3">
-          <span className="h-px w-10 bg-white/30" />
+      <div className="container-main flex min-h-[calc(100svh-64px)] w-full flex-col">
+        {/* Top metadata */}
 
-          <span className="eyebrow">Bengaluru / India</span>
-        </div>
+        <div className="flex items-center justify-between pt-8 md:pt-5">
+          <div className="flex items-center gap-3">
+            <span className="h-px w-8 bg-white/40" />
 
-        <h1 className="max-w-[1200px] text-[clamp(4rem,12vw,12rem)] font-medium leading-[0.78] tracking-[-0.075em]">
-          CHARAN
-          <br />
-          <span className="text-white/35">M.</span>
-        </h1>
-
-        <div className="mt-12 flex flex-col justify-between gap-8 border-t border-white/10 pt-6 md:flex-row">
-          <div>
-            <p className="text-sm uppercase tracking-[0.2em] text-white/80">
-              Software Developer
-            </p>
-
-            <p className="mt-2 text-sm text-white/40">
-              Full Stack / AI Automation / Connected Systems
-            </p>
+            <span className="eyebrow">Bengaluru / India</span>
           </div>
 
-          <p className="max-w-md text-sm leading-7 text-white/45">
-            I build digital products and connected systems where software,
-            hardware and intelligent automation meet.
-          </p>
+          <span className="hidden font-mono text-[9px] uppercase tracking-[0.16em] text-white/20 sm:block">
+            2026 / Portfolio
+          </span>
+        </div>
+
+        {/* Main hero composition */}
+
+        <div className="flex flex-1 items-start pt-[clamp(45px,7vh,80px)] pb-12 md:items-start">
+          <div className="grid w-full items-start gap-10 md:grid-cols-[minmax(0,1fr)_minmax(520px,1.05fr)] md:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(600px,1.05fr)] lg:gap-16">
+            {/* Identity */}
+
+            <div className="min-w-0 pt-[clamp(70px,11vh,130px)]">
+              <p className="mb-7 text-[10px] uppercase tracking-[0.2em] text-white/35">
+                Software Developer
+              </p>
+
+              <h1 className="display-xl max-w-[900px]">
+                CHARAN
+                <br />
+                <span className="text-white/25">M.</span>
+              </h1>
+
+              <div className="mt-8 max-w-[620px]">
+                <p className="text-sm leading-7 text-white/40">
+                  Full Stack
+                  <span className="mx-2 text-white/15">/</span>
+                  AI Automation
+                  <span className="mx-2 text-white/15">/</span>
+                  Connected Systems
+                </p>
+              </div>
+            </div>
+
+            {/* Reserved visual area — 18:16 / 9:8 */}
+
+            <div className="-mt-[clamp(0px,2vh,100px)] flex justify-end">
+              <div className="aspect-[9/7] w-full max-w-[760px] border border-white/10" />
+            </div>
+          </div>
         </div>
       </div>
     </section>

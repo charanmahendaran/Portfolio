@@ -3,9 +3,22 @@
 import { useEffect, useState } from "react";
 
 const links = [
-  ["Work", "work"],
-  ["About", "about"],
-  ["Contact", "contact"],
+  {
+    label: "Work",
+    target: "work",
+  },
+  {
+    label: "Experience",
+    target: "experience",
+  },
+  {
+    label: "About",
+    target: "about",
+  },
+  {
+    label: "Contact",
+    target: "contact",
+  },
 ];
 
 export default function Navbar() {
@@ -13,43 +26,78 @@ export default function Navbar() {
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 40);
+      setScrolled(window.scrollY > 24);
     };
 
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, {
+      passive: true,
+    });
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
   }, []);
 
   return (
     <header
-      className={`fixed left-0 top-0 z-50 w-full transition-all duration-500 ${
+      className={[
+        "fixed left-0 top-0 z-50 w-full",
+        "transition-[background-color,border-color] duration-500",
         scrolled
-          ? "border-b border-white/10 bg-[#0a0a0a]/75 backdrop-blur-xl"
-          : "bg-transparent"
-      }`}
+          ? "border-b border-white/10 bg-[#0a0a0a]"
+          : "border-b border-transparent bg-transparent",
+      ].join(" ")}
     >
-      <div className="container-main flex h-20 items-center justify-between">
-        <a href="#top" className="text-sm font-semibold tracking-[0.18em]">
-          CM<span className="text-white/30">.</span>
+      <div className="container-main flex h-[64px] items-center justify-between">
+        {/* Logo */}
+
+        <a
+          href="#top"
+          aria-label="Charan M — back to top"
+          className="group flex items-center gap-2"
+        >
+          <span className="text-[15px] font-medium tracking-[-0.04em]">CM</span>
+
+          <span className="h-1 w-1 rounded-full bg-white/50 transition-transform duration-300 group-hover:scale-150" />
         </a>
 
-        <nav className="hidden items-center gap-8 md:flex">
-          {links.map(([label, id]) => (
+        {/* Navigation */}
+
+        <nav
+          aria-label="Main navigation"
+          className="hidden items-center gap-9 md:flex"
+        >
+          {links.map((link) => (
             <a
-              key={id}
-              href={`#${id}`}
-              className="text-xs uppercase tracking-[0.16em] text-white/55 transition-colors hover:text-white"
+              key={link.target}
+              href={`#${link.target}`}
+              className="group text-[10px] font-medium uppercase tracking-[0.15em] text-white/40 transition-colors duration-300 hover:text-white"
             >
-              {label}
+              <span className="relative inline-block py-2">
+                {link.label}
+
+                <span
+                  aria-hidden="true"
+                  className="absolute bottom-0 left-1/2 h-px w-full -translate-x-1/2 scale-x-0 bg-white transition-transform duration-300 ease-out group-hover:scale-x-100"
+                />
+              </span>
             </a>
           ))}
         </nav>
 
+        {/* Let's Talk */}
+
         <a
-          href="mailto:charanmahendaran@gmail.com"
-          className="text-xs uppercase tracking-[0.16em] text-white/70 transition-colors hover:text-white"
+          href="#contact"
+          className="group flex items-center gap-3 text-[10px] font-medium uppercase tracking-[0.15em] text-white/50 transition-colors duration-300 hover:text-white"
         >
-          Let&apos;s Talk
+          <span className="hidden sm:inline">Let&apos;s Talk</span>
+
+          <span className="flex h-7 w-7 items-center justify-center border border-white/15 text-white/50 transition-all duration-300 group-hover:border-white/40 group-hover:text-white">
+            ↗
+          </span>
         </a>
       </div>
     </header>
