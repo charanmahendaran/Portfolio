@@ -273,4 +273,17 @@ section[id] {
     font-size: clamp(3.25rem, 15vw, 6rem);
     line-height: 0.9;
   }
+  .work-title {
+    font-size: clamp(3.25rem, 14vw, 6rem);
+    line-height: 0.9;
+  }
+}
+
+.work-title {
+  max-width: 1000px;
+  font-size: clamp(4rem, 8vw, 8rem);
+  font-weight: 500;
+  line-height: 0.88;
+  letter-spacing: -0.055em;
+  text-wrap: balance;
 }
