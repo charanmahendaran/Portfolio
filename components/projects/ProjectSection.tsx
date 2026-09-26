@@ -3,52 +3,59 @@ import { projects } from "@/data/projects";
 export default function ProjectSection() {
   return (
     <section id="work" className="section">
-      <div className="container-main">
-        <div className="flex flex-col justify-between gap-8 md:flex-row md:items-end">
+      <div className="container-main w-full">
+        {/* Section header */}
+        <div className="flex items-end justify-between gap-8">
           <div>
             <span className="eyebrow">03 / Selected Work</span>
 
-            <h2 className="mt-6 text-5xl font-medium tracking-[-0.05em] md:text-7xl">
+            <h2 className="work-title mt-[clamp(40px,6vh,80px)]">
               Things I&apos;ve built.
             </h2>
           </div>
 
-          <span className="text-xs uppercase tracking-[0.15em] text-white/30">
-            {projects.length.toString().padStart(2, "0")} projects
+          <span className="eyebrow mb-2 text-white/35">
+            {String(projects.length).padStart(2, "0")} Projects
           </span>
         </div>
 
-        <div className="mt-16">
+        {/* Project list */}
+        <div className="mt-[clamp(70px,10vh,140px)]">
           {projects.map((project) => (
             <article
               key={project.number}
-              className="group border-t border-white/10 py-9 transition-colors duration-300 hover:bg-white/[0.02] md:py-11"
+              className="group border-t border-white/10 py-[clamp(50px,6vw,90px)]"
             >
-              <div className="grid gap-6 md:grid-cols-[70px_1fr_1.4fr_150px] md:items-start">
-                <span className="font-mono text-xs text-white/25">
-                  {project.number}
-                </span>
-
+              <div className="grid grid-cols-[64px_1fr] gap-6 md:grid-cols-[80px_0.8fr_1.4fr_120px] md:gap-8">
+                {/* Number */}
                 <div>
-                  <h3 className="text-2xl font-medium tracking-[-0.03em] transition-transform duration-300 group-hover:translate-x-1 md:text-4xl">
+                  <span className="eyebrow text-white/35">
+                    {project.number}
+                  </span>
+                </div>
+
+                {/* Project identity */}
+                <div>
+                  <h3 className="text-3xl font-medium tracking-[-0.045em] text-white md:text-4xl">
                     {project.title}
                   </h3>
 
-                  <p className="mt-2 text-[9px] uppercase tracking-[0.15em] text-white/30">
+                  <p className="mt-2 text-[11px] uppercase tracking-[0.14em] text-white/35">
                     {project.category}
                   </p>
                 </div>
 
-                <div>
-                  <p className="max-w-xl text-sm leading-7 text-white/45">
+                {/* Description + technologies */}
+                <div className="mt-6 md:mt-0">
+                  <p className="max-w-2xl text-base leading-7 tracking-[-0.015em] text-white/55 md:text-lg">
                     {project.description}
                   </p>
 
-                  <div className="mt-4 flex flex-wrap gap-2">
+                  <div className="mt-5 flex flex-wrap gap-2">
                     {project.technologies.map((technology) => (
                       <span
                         key={technology}
-                        className="border border-white/10 px-2 py-1 text-[9px] uppercase tracking-[0.12em] text-white/35"
+                        className="border border-white/10 px-2.5 py-1 text-[10px] uppercase tracking-[0.12em] text-white/40"
                       >
                         {technology}
                       </span>
@@ -56,8 +63,9 @@ export default function ProjectSection() {
                   </div>
                 </div>
 
-                <div className="flex flex-col items-start gap-3 md:items-end">
-                  <span className="text-[9px] uppercase tracking-[0.15em] text-white/25">
+                {/* Status + links */}
+                <div className="mt-6 flex flex-col items-start gap-3 md:mt-0 md:items-end">
+                  <span className="text-[10px] uppercase tracking-[0.14em] text-white/30">
                     {project.status}
                   </span>
 
@@ -65,8 +73,8 @@ export default function ProjectSection() {
                     <a
                       href={project.live}
                       target="_blank"
-                      rel="noreferrer"
-                      className="text-xs uppercase tracking-[0.12em] text-white/70 underline underline-offset-4 hover:text-white"
+                      rel="noopener noreferrer"
+                      className="text-xs uppercase tracking-[0.12em] text-white transition-colors hover:text-white/55"
                     >
                       Live ↗
                     </a>
@@ -76,8 +84,8 @@ export default function ProjectSection() {
                     <a
                       href={project.github}
                       target="_blank"
-                      rel="noreferrer"
-                      className="text-xs uppercase tracking-[0.12em] text-white/40 hover:text-white"
+                      rel="noopener noreferrer"
+                      className="text-xs uppercase tracking-[0.12em] text-white transition-colors hover:text-white/55"
                     >
                       GitHub ↗
                     </a>

@@ -33,7 +33,7 @@ export default function TechSystem() {
   ];
 
   return (
-    <section id="stack" className="section min-h-[120svh]">
+    <section id="stack" className="section stack-section">
       <div className="container-main w-full">
         {/* Section header */}
         <div className="flex items-start justify-between gap-8">
