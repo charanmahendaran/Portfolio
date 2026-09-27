@@ -1,39 +1,57 @@
-export const credentials = [
+export type Credential = {
+  year: string;
+  title: string;
+  issuer: string;
+  skills: string[];
+};
+
+export const credentials: Credential[] = [
+  {
+    year: "2026",
+    title: "Certificate of Presentation",
+    issuer: "SCPGCON 2026",
+    skills: ["Mine-Bot", "Robotics", "IoT", "Research"],
+  },
   {
     year: "2025",
-    title: "RISC-V Workshop",
-    organization: "Samsung",
-    description:
-      "Six-week RISC-V program with a project on Electronic Access Control System implementation using the VSD Squadron Mini and solenoid lock.",
+    title: "Web Design Course For Beginner to Advanced",
+    issuer: "Udemy",
+    skills: ["Web Design", "HTML", "CSS", "UI"],
+  },
+  {
+    year: "2025",
+    title: "6-Week RISC-V Program",
+    issuer: "Samsung",
+    skills: ["RISC-V", "Embedded Systems", "VSD Squadron Mini"],
   },
   {
     year: "2024",
     title: "System Design Through Verilog",
-    organization: "NPTEL",
-    description: "Online certification with a final score of 80%.",
-  },
-  {
-    year: "2024",
-    title: "Python Foundation",
-    organization: "Infosys",
-    description: "Python Foundation certification.",
-  },
-  {
-    year: "2024",
-    title: "Internet of Things Foundation",
-    organization: "Infosys",
-    description: "IoT Foundation certification.",
-  },
-  {
-    year: "2024",
-    title: "Build a Full Website using WordPress",
-    organization: "Coursera Project Network",
-    description: "Hands-on website development project.",
+    issuer: "NPTEL",
+    skills: ["Verilog", "Digital Design", "VLSI"],
   },
   {
     year: "2024",
     title: "Create and Design Digital Products using Canva",
-    organization: "Coursera Project Network",
-    description: "Digital product design project.",
+    issuer: "Coursera",
+    skills: ["Canva", "Digital Design"],
+  },
+  {
+    year: "2024",
+    title: "Build a Full Website using WordPress",
+    issuer: "Coursera",
+    skills: ["WordPress", "Web Design"],
+  },
+  {
+    year: "2024",
+    title: "Internet of Things Foundation Certification",
+    issuer: "Infosys",
+    skills: ["IoT", "Connected Systems"],
+  },
+  {
+    year: "2024",
+    title: "Python Foundation Certification",
+    issuer: "Infosys",
+    skills: ["Python", "Programming"],
   },
 ];
