@@ -18,6 +18,22 @@
 
   --line: rgba(255, 255, 255, 0.1);
 
+  /*
+   * Section tonal system
+   *
+   * These are intentionally very close to one another.
+   * The difference should be felt, not announced.
+   */
+  --section-hero: #0a0a0a;
+  --section-statement: #0d0d0f;
+  --section-stack: #0b0c10;
+  --section-work: #0a0d12;
+  --section-experience: #0e0e10;
+  --section-education: #0c0d11;
+  --section-credentials: #0e0e12;
+  --section-about: #0a0b0f;
+  --section-contact: #0a0a0a;
+
   --container: 1600px;
   --gutter: 40px;
 
@@ -38,12 +54,9 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-
   background: var(--background);
   color: var(--foreground);
-
   font-family: Arial, Helvetica, sans-serif;
-
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
@@ -71,10 +84,6 @@ button {
   color: var(--background);
 }
 
-/* ------------------------------
-   Scrollbar
------------------------------- */
-
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -92,13 +101,12 @@ button {
   background: rgba(244, 241, 234, 0.35);
 }
 
-/* ------------------------------
-   Layout
------------------------------- */
+/* =========================================================
+   GLOBAL LAYOUT
+   ========================================================= */
 
 .container-main {
   width: min(calc(100% - (var(--gutter) * 2)), var(--container));
-
   margin-inline: auto;
 }
 
@@ -112,20 +120,172 @@ button {
   border-top: 1px solid var(--line);
 }
 
-/* ------------------------------
-   Typography
------------------------------- */
+/* =========================================================
+   SECTION TONAL BACKGROUNDS
+   =========================================================
+   
+   These are static for now.
+
+   We are deliberately NOT animating background-color yet.
+   Motion/background orchestration comes later, after the
+   static visual system is frozen.
+   ========================================================= */
+
+#top {
+  background: var(--section-hero);
+}
+
+#statement {
+  background: var(--section-statement);
+}
+
+#stack {
+  background: var(--section-stack);
+}
+
+#work {
+  background: var(--section-work);
+}
+
+#experience {
+  background: var(--section-experience);
+}
+
+#education {
+  background: var(--section-education);
+}
+
+#credentials {
+  background: var(--section-credentials);
+}
+
+#about {
+  background: var(--section-about);
+}
+
+#contact {
+  background: var(--section-contact);
+}
+
+/* =========================================================
+   SUBTLE SECTION TRANSITIONS
+   =========================================================
+   
+   Very short tonal fades at boundaries.
+   No large gradients or decorative effects.
+   ========================================================= */
+
+#statement,
+#stack,
+#work,
+#experience,
+#education,
+#credentials,
+#about {
+  isolation: isolate;
+}
+
+/*
+ * The transition layer sits behind section content.
+ * It is intentionally subtle so the tonal shift feels
+ * continuous rather than like separate colored blocks.
+ */
+
+#statement::before,
+#stack::before,
+#work::before,
+#experience::before,
+#education::before,
+#credentials::before,
+#about::before,
+#contact::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  height: 72px;
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Statement: Hero -> Statement */
+#statement::before {
+  background: linear-gradient(
+    to bottom,
+    var(--section-hero),
+    var(--section-statement)
+  );
+}
+
+/* Stack: Statement -> Stack */
+#stack::before {
+  background: linear-gradient(
+    to bottom,
+    var(--section-statement),
+    var(--section-stack)
+  );
+}
+
+/* Work: Stack -> Work */
+#work::before {
+  background: linear-gradient(
+    to bottom,
+    var(--section-stack),
+    var(--section-work)
+  );
+}
+
+/* Experience: Work -> Experience */
+#experience::before {
+  background: linear-gradient(
+    to bottom,
+    var(--section-work),
+    var(--section-experience)
+  );
+}
+
+/* Education: Experience -> Education */
+#education::before {
+  background: linear-gradient(
+    to bottom,
+    var(--section-experience),
+    var(--section-education)
+  );
+}
+
+/* Credentials: Education -> Credentials */
+#credentials::before {
+  background: linear-gradient(
+    to bottom,
+    var(--section-education),
+    var(--section-credentials)
+  );
+}
+
+/* About: Credentials -> About */
+#about::before {
+  background: linear-gradient(
+    to bottom,
+    var(--section-credentials),
+    var(--section-about)
+  );
+}
+
+#contact::before {
+  display: none;
+}
+/* =========================================================
+   TYPOGRAPHY
+   ========================================================= */
 
 .eyebrow {
   display: inline-flex;
   align-items: center;
-
   color: var(--white-40);
-
   font-size: 10px;
   font-weight: 500;
   line-height: 1;
-
   letter-spacing: 0.18em;
   text-transform: uppercase;
 }
@@ -146,15 +306,10 @@ button {
 
 .body-text {
   color: var(--muted);
-
   font-size: 15px;
   font-weight: 400;
   line-height: 1.8;
 }
-
-/* ------------------------------
-   Utility
------------------------------- */
 
 .line {
   width: 100%;
@@ -170,57 +325,14 @@ button {
   display: none;
 }
 
-/* ------------------------------
-   Focus
------------------------------- */
-
 :focus-visible {
   outline: 1px solid var(--white-80);
   outline-offset: 5px;
 }
 
-/* ------------------------------
-   Responsive
------------------------------- */
-
-@media (max-width: 900px) {
-  :root {
-    --gutter: 32px;
-  }
-}
-
-@media (max-width: 640px) {
-  :root {
-    --gutter: 20px;
-  }
-
-  .section {
-    padding-block: 100px;
-  }
-}
-
-/* ------------------------------
-   Reduced motion
------------------------------- */
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration: 0.01ms !important;
-    animation-iteration-count: 1 !important;
-    transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
-  }
-}
-
-/* --------------------------------
-   Lenis Smooth Scroll
--------------------------------- */
+/* =========================================================
+   LENIS
+   ========================================================= */
 
 html.lenis,
 html.lenis body {
@@ -244,12 +356,12 @@ html.lenis body {
 }
 
 section[id] {
-  scroll-margin-top: 0px;
+  scroll-margin-top: 0;
 }
 
-/* ------------------------------
-   Statement
------------------------------- */
+/* =========================================================
+   STATEMENT
+   ========================================================= */
 
 .statement-title {
   max-width: 1300px;
@@ -260,16 +372,9 @@ section[id] {
   text-wrap: balance;
 }
 
-@media (max-width: 640px) {
-  .statement-title {
-    font-size: clamp(3.25rem, 16vw, 6rem);
-    line-height: 0.9;
-  }
-}
-
-/* ------------------------------
-   Stack
------------------------------- */
+/* =========================================================
+   STACK
+   ========================================================= */
 
 .stack-title {
   max-width: 1100px;
@@ -280,9 +385,9 @@ section[id] {
   text-wrap: balance;
 }
 
-/* ------------------------------
-   Work
------------------------------- */
+/* =========================================================
+   WORK / GENERAL SECTION TITLES
+   ========================================================= */
 
 .work-title {
   max-width: 1000px;
@@ -294,10 +399,29 @@ section[id] {
 }
 
 /* =========================================================
-   RESPONSIVE REFINEMENT
-   Mobile + Tablet Portrait
-   Desktop geometry intentionally untouched
+   RESPONSIVE
    ========================================================= */
+
+@media (max-width: 900px) {
+  :root {
+    --gutter: 32px;
+  }
+}
+
+@media (max-width: 640px) {
+  :root {
+    --gutter: 20px;
+  }
+
+  .section {
+    padding-block: 100px;
+  }
+
+  .statement-title {
+    font-size: clamp(3.25rem, 16vw, 6rem);
+    line-height: 0.9;
+  }
+}
 
 @media (max-width: 639px) {
   .section {
@@ -326,5 +450,24 @@ section[id] {
 
   .work-title {
     max-width: 850px;
+  }
+}
+
+/* =========================================================
+   REDUCED MOTION
+   ========================================================= */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }

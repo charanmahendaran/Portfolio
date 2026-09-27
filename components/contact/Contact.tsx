@@ -106,7 +106,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative min-h-[135svh] overflow-clip bg-[#0a0a0a]"
+      className="relative min-h-[135svh] overflow-clip bg-[var(--section-about)]"
       style={
         {
           "--contact-progress": 0,
@@ -118,7 +118,20 @@ export default function Contact() {
             UNDERLYING CONTACT STATEMENT
             ===================================================== */}
 
-        <div className="absolute inset-0 z-0 bg-[#0a0a0a]">
+        <div
+          className="absolute inset-0 z-0"
+          style={{
+            background: `
+      linear-gradient(
+        to bottom,
+        var(--section-about) 0%,
+        var(--section-about) 8%,
+        var(--section-contact) 22%,
+        var(--section-contact) 100%
+      )
+    `,
+          }}
+        >
           <div className="container-main flex h-full flex-col pt-[64px]">
             <div className="flex flex-1 flex-col pt-[clamp(80px,10vh,140px)]">
               <span className="eyebrow">08 / Contact</span>
