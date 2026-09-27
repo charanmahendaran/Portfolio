@@ -23,6 +23,7 @@ export default function Contact() {
   return (
     <section id="contact" className="section min-h-[100svh]">
       <div className="container-main flex min-h-[70vh] flex-col justify-between">
+        {/* Main statement — unchanged */}
         <div>
           <span className="eyebrow">08 / Contact</span>
 
@@ -38,83 +39,100 @@ export default function Contact() {
           </p>
         </div>
 
-        <div className="mt-20 grid gap-12 border-t border-white/10 pt-8 md:grid-cols-2">
-          {/* Email */}
-
-          <div>
-            <span className="text-[9px] uppercase tracking-[0.16em] text-white/25">
-              Start a conversation
-            </span>
-
-            <button
-              type="button"
-              onClick={copyEmail}
-              className="group mt-4 block text-left"
-            >
-              <span className="block text-xl tracking-[-0.02em] text-white/75 transition-transform duration-300 group-hover:translate-x-1 md:text-3xl">
-                {email}
+        {/* Contact actions */}
+        <div className="mt-20 border-t border-white/10 pt-8">
+          <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-16">
+            {/* Email */}
+            <div>
+              <span className="block text-[9px] uppercase tracking-[0.16em] text-white/25">
+                Direct inquiries
               </span>
 
-              <span className="mt-2 block text-[9px] uppercase tracking-[0.15em] text-white/25">
-                {copied ? "Copied to clipboard" : "Click to copy"}
-              </span>
-            </button>
-          </div>
-
-          {/* Links */}
-
-          <div className="flex flex-col gap-5 md:items-end">
-            <a
-              href="https://github.com/charanmahendaran"
-              target="_blank"
-              rel="noreferrer"
-              className="group flex items-center gap-3 text-sm uppercase tracking-[0.14em] text-white/50 transition-colors hover:text-white"
-            >
-              GitHub
-              <span className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
-                ↗
-              </span>
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/charanmahendaran/"
-              target="_blank"
-              rel="noreferrer"
-              className="group flex items-center gap-3 text-sm uppercase tracking-[0.14em] text-white/50 transition-colors hover:text-white"
-            >
-              LinkedIn
-              <span className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
-                ↗
-              </span>
-            </a>
-
-            <a
-              href="mailto:charanmahendaran@gmail.com"
-              className="group flex items-center gap-3 text-sm uppercase tracking-[0.14em] text-white/50 transition-colors hover:text-white"
-            >
-              Gmail
-              <span className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1">
-                ↗
-              </span>
-            </a>
-
-            <div className="mt-4 flex flex-wrap gap-3 md:justify-end">
-              <a
-                href="/resume/Charan-Mahendaran-Resume.pdf"
-                target="_blank"
-                rel="noreferrer"
-                className="border border-white/20 px-5 py-3 text-[9px] uppercase tracking-[0.15em] text-white/60 transition-colors hover:border-white/50 hover:text-white"
+              <button
+                type="button"
+                onClick={copyEmail}
+                className="group mt-3 flex items-center text-left"
+                aria-label="Copy email address"
               >
-                View Resume ↗
-              </a>
+                <span className="text-xl tracking-[-0.025em] text-white/70 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white md:text-2xl">
+                  {email}
+                </span>
 
-              <a
-                href="/resume/Charan-Mahendaran-Resume.pdf"
-                download
-                className="border border-white/10 px-5 py-3 text-[9px] uppercase tracking-[0.15em] text-white/40 transition-colors hover:border-white/40 hover:text-white"
-              >
-                Download Resume ↓
-              </a>
+                <span className="ml-2 text-white/30 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white">
+                  {copied ? "✓" : "↗"}
+                </span>
+
+                <span
+                  className={`ml-3 text-[9px] uppercase tracking-[0.14em] transition-all duration-300 ${
+                    copied
+                      ? "translate-x-0 opacity-100 text-white/50"
+                      : "pointer-events-none -translate-x-1 opacity-0"
+                  }`}
+                  aria-live="polite"
+                >
+                  Copied
+                </span>
+              </button>
+            </div>
+
+            {/* Links + Resume */}
+            <div className="flex flex-col gap-7 lg:items-end">
+              {/* Social links */}
+              <div className="flex flex-wrap gap-x-8 gap-y-4">
+                <a
+                  href="https://github.com/charanmahendaran"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-white/45 transition-colors duration-300 hover:text-white"
+                >
+                  GitHub
+                  <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                    ↗
+                  </span>
+                </a>
+
+                <a
+                  href="https://www.linkedin.com/in/charanmahendaran/"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="group flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-white/45 transition-colors duration-300 hover:text-white"
+                >
+                  LinkedIn
+                  <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                    ↗
+                  </span>
+                </a>
+
+                <a
+                  href={`mailto:${email}`}
+                  className="group flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-white/45 transition-colors duration-300 hover:text-white"
+                >
+                  Gmail
+                  <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
+                    ↗
+                  </span>
+                </a>
+              </div>
+
+              {/* Resume */}
+              <div className="flex flex-wrap gap-3 lg:justify-end">
+                <a
+                  href="/resume/Charan-Mahendaran-Resume.pdf"
+                  target="_blank"
+                  rel="noreferrer"
+                  className="border border-white/20 px-5 py-3 text-[9px] uppercase tracking-[0.15em] text-white/60 transition-colors duration-300 hover:border-white/50 hover:text-white"
+                >
+                  View Resume ↗
+                </a>
+
+                <a
+                  href="/resume/Charan-Mahendaran-Resume.pdf"
+                  download
+                  className="border border-white/10 px-5 py-3 text-[9px] uppercase tracking-[0.15em] text-white/40 transition-colors duration-300 hover:border-white/40 hover:text-white"
+                >
+                  Download Resume ↓
+                </a>
+              </div>
             </div>
           </div>
         </div>
