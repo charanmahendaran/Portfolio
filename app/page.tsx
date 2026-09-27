@@ -1,5 +1,4 @@
 import Navbar from "@/components/layout/Navbar";
-import Footer from "@/components/layout/Footer";
 import Loader from "@/components/loader/Loader";
 import Hero from "@/components/hero/Hero";
 import Statement from "@/components/statement/Statement";
@@ -10,6 +9,7 @@ import Education from "@/components/education/Education";
 import Credentials from "@/components/credentials/Credentials";
 import About from "@/components/about/About";
 import Contact from "@/components/contact/Contact";
+import ScrollProgressTop from "@/components/ui/ScrollProgressTop";
 
 export default function Home() {
   return (
@@ -37,6 +37,8 @@ export default function Home() {
 
         <Contact />
       </main>
+
+      <ScrollProgressTop />
     </>
   );
 }

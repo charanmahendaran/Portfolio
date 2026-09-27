@@ -9,6 +9,12 @@ export default function Contact() {
   const sectionRef = useRef<HTMLElement | null>(null);
   const [copied, setCopied] = useState(false);
 
+  /*
+   * ------------------------------------------------------------
+   * Contact curtain scroll progress
+   * ------------------------------------------------------------
+   */
+
   useEffect(() => {
     const section = sectionRef.current;
 
@@ -76,6 +82,12 @@ export default function Contact() {
     };
   }, []);
 
+  /*
+   * ------------------------------------------------------------
+   * Copy email
+   * ------------------------------------------------------------
+   */
+
   const copyEmail = async () => {
     try {
       await navigator.clipboard.writeText(email);
@@ -105,6 +117,7 @@ export default function Contact() {
         {/* =====================================================
             UNDERLYING CONTACT STATEMENT
             ===================================================== */}
+
         <div className="absolute inset-0 z-0 bg-[#0a0a0a]">
           <div className="container-main flex h-full flex-col pt-[64px]">
             <div className="flex flex-1 flex-col pt-[clamp(80px,10vh,140px)]">
@@ -129,6 +142,7 @@ export default function Contact() {
         {/* =====================================================
             MONOLITH CURTAIN
             ===================================================== */}
+
         <div
           className="absolute inset-x-0 bottom-0 z-10 flex h-[68svh] max-h-[620px] min-h-[460px] flex-col overflow-hidden border-t border-white/10 bg-[#0a0a0a]/96 shadow-[0_-30px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl will-change-transform"
           style={{
@@ -139,11 +153,13 @@ export default function Contact() {
             {/* =================================================
                 CONTACT CONTENT
                 ================================================= */}
+
             <div className="flex min-h-0 flex-1 items-center py-10 md:py-12">
               <div className="grid w-full gap-14 lg:grid-cols-2 lg:gap-20">
                 {/* ---------------------------------------------
                     DIRECT INQUIRIES
                     --------------------------------------------- */}
+
                 <div className="flex flex-col justify-center">
                   <span className="text-[10px] uppercase tracking-[0.18em] text-white/30">
                     Direct inquiries
@@ -183,6 +199,7 @@ export default function Contact() {
                 {/* ---------------------------------------------
                     CONNECT + RESUME
                     --------------------------------------------- */}
+
                 <div className="flex flex-col justify-center lg:items-end">
                   <span className="text-[10px] uppercase tracking-[0.18em] text-white/30">
                     Connect &amp; resume
@@ -239,6 +256,7 @@ export default function Contact() {
             {/* =================================================
                 INTEGRATED FOOTER
                 ================================================= */}
+
             <Footer />
           </div>
         </div>

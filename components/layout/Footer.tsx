@@ -7,13 +7,6 @@ export default function Footer() {
         <span>Software / AI / Connected Systems</span>
 
         <span>Bengaluru, IN (GMT +5:30)</span>
-
-        <a
-          href="#top"
-          className="transition-colors duration-300 hover:text-white"
-        >
-          Back to top ↑
-        </a>
       </div>
     </footer>
   );
