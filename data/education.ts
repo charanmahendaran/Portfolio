@@ -1,27 +1,33 @@
 export type Education = {
-  period: string;
   institution: string;
-  qualification: string;
-  result: string;
+  degree: string;
+  period: string;
+  score: string;
+  description: string;
 };
 
 export const education: Education[] = [
   {
-    period: "2022 — 2026",
     institution: "Global Academy of Technology",
-    qualification: "B.E. Electronics & Communication Engineering",
-    result: "CGPA 9.18",
+    degree: "B.E. Electronics & Communication Engineering",
+    period: "2022 — 2026",
+    score: "CGPA 9.18",
+    description:
+      "Bachelor of Engineering in Electronics & Communication Engineering.",
   },
   {
-    period: "2020 — 2022",
     institution: "Shree Bhagawan Mahaveer Jain College",
-    qualification: "PUC — PCMB",
-    result: "82.66%",
+    degree: "PUC — PCMB",
+    period: "2020 — 2022",
+    score: "82.66%",
+    description:
+      "Pre-University Course with Physics, Chemistry, Mathematics and Biology.",
   },
   {
-    period: "2010 — 2020",
     institution: "Oxford English School",
-    qualification: "ICSE",
-    result: "83.16%",
+    degree: "ICSE",
+    period: "2010 — 2020",
+    score: "83.16%",
+    description: "Secondary school education under the ICSE curriculum.",
   },
 ];
