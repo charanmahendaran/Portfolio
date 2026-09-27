@@ -19,14 +19,14 @@ export default function ProjectSection() {
           </span>
         </div>
 
-        {/* Project list */}
+        {/* Projects */}
         <div className="mt-[clamp(70px,10vh,140px)]">
           {projects.map((project) => (
             <article
               key={project.number}
               className="group border-t border-white/10 py-[clamp(50px,6vw,90px)]"
             >
-              <div className="grid grid-cols-[64px_1fr] gap-6 md:grid-cols-[80px_0.8fr_1.4fr_120px] md:gap-8">
+              <div className="grid gap-8 md:grid-cols-[64px_1fr] lg:grid-cols-[80px_0.8fr_1.4fr_120px] lg:gap-8">
                 {/* Number */}
                 <div>
                   <span className="eyebrow text-white/35">
@@ -46,7 +46,7 @@ export default function ProjectSection() {
                 </div>
 
                 {/* Description + technologies */}
-                <div className="mt-6 md:mt-0">
+                <div className="mt-2 md:col-start-2 md:mt-4 lg:col-start-auto lg:mt-0">
                   <p className="max-w-2xl text-base leading-7 tracking-[-0.015em] text-white/55 md:text-lg">
                     {project.description}
                   </p>
@@ -64,7 +64,7 @@ export default function ProjectSection() {
                 </div>
 
                 {/* Status + links */}
-                <div className="mt-6 flex flex-col items-start gap-3 md:mt-0 md:items-end">
+                <div className="mt-2 flex flex-col items-start gap-3 md:col-start-2 md:mt-5 lg:col-start-auto lg:mt-0 lg:items-end">
                   <span className="text-[10px] uppercase tracking-[0.14em] text-white/30">
                     {project.status}
                   </span>

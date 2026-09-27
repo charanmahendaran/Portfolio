@@ -6,7 +6,6 @@ export default function Hero() {
     >
       <div className="container-main flex min-h-[calc(100svh-64px)] w-full flex-col">
         {/* Top metadata */}
-
         <div className="flex items-center justify-between pt-8 md:pt-5">
           <div className="flex items-center gap-3">
             <span className="h-px w-8 bg-white/40" />
@@ -20,12 +19,10 @@ export default function Hero() {
         </div>
 
         {/* Main hero composition */}
-
         <div className="flex flex-1 items-start pt-[clamp(45px,7vh,80px)] pb-12 md:items-start">
           <div className="grid w-full items-start gap-10 md:grid-cols-[minmax(0,1fr)_minmax(520px,1.05fr)] md:gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(600px,1.05fr)] lg:gap-16">
             {/* Identity */}
-
-            <div className="min-w-0 pt-[clamp(70px,11vh,130px)]">
+            <div className="min-w-0 pt-[clamp(40px,7vh,70px)] md:pt-[clamp(70px,11vh,130px)]">
               <p className="mb-7 text-[10px] uppercase tracking-[0.2em] text-white/35">
                 Software Developer
               </p>
@@ -36,20 +33,19 @@ export default function Hero() {
                 <span className="text-white/25">M.</span>
               </h1>
 
-              <div className="mt-8 max-w-[620px]">
-                <p className="text-sm leading-7 text-white/40">
+              <div className="mt-7 max-w-[300px] md:mt-8 md:max-w-[620px]">
+                <p className="text-xs leading-6 text-white/40 md:text-sm md:leading-7">
                   Full Stack
-                  <span className="mx-2 text-white/15">/</span>
+                  <span className="mx-1.5 text-white/15 md:mx-2">/</span>
                   AI Automation
-                  <span className="mx-2 text-white/15">/</span>
+                  <span className="mx-1.5 text-white/15 md:mx-2">/</span>
                   Connected Systems
                 </p>
               </div>
             </div>
 
-            {/* Reserved visual area — 18:16 / 9:8 */}
-
-            <div className="-mt-[clamp(0px,2vh,100px)] flex justify-end">
+            {/* Reserved visual area */}
+            <div className="mt-0 flex w-full justify-start md:-mt-[clamp(0px,2vh,100px)] md:justify-end">
               <div className="aspect-[9/7] w-full max-w-[760px] border border-white/10" />
             </div>
           </div>
