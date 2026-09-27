@@ -21,9 +21,9 @@ export default function Contact() {
   };
 
   return (
-    <section id="contact" className="section min-h-[100svh]">
-      <div className="container-main flex min-h-[70vh] flex-col justify-between">
-        {/* Main statement — unchanged */}
+    <section id="contact" className="section scroll-mt-16">
+      <div className="container-main">
+        {/* Main statement */}
         <div>
           <span className="eyebrow">08 / Contact</span>
 
@@ -39,26 +39,26 @@ export default function Contact() {
           </p>
         </div>
 
-        {/* Contact actions */}
-        <div className="mt-20 border-t border-white/10 pt-8">
-          <div className="grid gap-10 lg:grid-cols-[1fr_auto] lg:items-end lg:gap-16">
+        {/* Contact rail */}
+        <div className="mt-[clamp(100px,12vh,160px)] border-t border-white/10 pt-7 pb-2">
+          <div className="grid gap-10 lg:grid-cols-2 lg:gap-20">
             {/* Email */}
-            <div>
-              <span className="block text-[9px] uppercase tracking-[0.16em] text-white/25">
+            <div className="flex flex-col justify-between">
+              <span className="text-[9px] uppercase tracking-[0.16em] text-white/25">
                 Direct inquiries
               </span>
 
               <button
                 type="button"
                 onClick={copyEmail}
-                className="group mt-3 flex items-center text-left"
+                className="group mt-5 flex w-fit items-center text-left"
                 aria-label="Copy email address"
               >
-                <span className="text-xl tracking-[-0.025em] text-white/70 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white md:text-2xl">
+                <span className="text-lg tracking-[-0.025em] text-white/65 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white sm:text-xl md:text-2xl">
                   {email}
                 </span>
 
-                <span className="ml-2 text-white/30 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white">
+                <span className="ml-2 text-white/25 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white">
                   {copied ? "✓" : "↗"}
                 </span>
 
@@ -75,15 +75,14 @@ export default function Contact() {
               </button>
             </div>
 
-            {/* Links + Resume */}
+            {/* Links */}
             <div className="flex flex-col gap-7 lg:items-end">
-              {/* Social links */}
-              <div className="flex flex-wrap gap-x-8 gap-y-4">
+              <div className="flex flex-wrap gap-x-8 gap-y-4 lg:justify-end">
                 <a
                   href="https://github.com/charanmahendaran"
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-white/45 transition-colors duration-300 hover:text-white"
+                  className="group flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-white/45 transition-colors duration-300 hover:text-white"
                 >
                   GitHub
                   <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
@@ -95,7 +94,7 @@ export default function Contact() {
                   href="https://www.linkedin.com/in/charanmahendaran/"
                   target="_blank"
                   rel="noreferrer"
-                  className="group flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-white/45 transition-colors duration-300 hover:text-white"
+                  className="group flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-white/45 transition-colors duration-300 hover:text-white"
                 >
                   LinkedIn
                   <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
@@ -105,7 +104,7 @@ export default function Contact() {
 
                 <a
                   href={`mailto:${email}`}
-                  className="group flex items-center gap-2 text-xs uppercase tracking-[0.14em] text-white/45 transition-colors duration-300 hover:text-white"
+                  className="group flex items-center gap-2 text-[11px] uppercase tracking-[0.14em] text-white/45 transition-colors duration-300 hover:text-white"
                 >
                   Gmail
                   <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
@@ -114,13 +113,12 @@ export default function Contact() {
                 </a>
               </div>
 
-              {/* Resume */}
               <div className="flex flex-wrap gap-3 lg:justify-end">
                 <a
                   href="/resume/Charan-Mahendaran-Resume.pdf"
                   target="_blank"
                   rel="noreferrer"
-                  className="border border-white/20 px-5 py-3 text-[9px] uppercase tracking-[0.15em] text-white/60 transition-colors duration-300 hover:border-white/50 hover:text-white"
+                  className="border border-white/15 px-5 py-3 text-[9px] uppercase tracking-[0.15em] text-white/55 transition-all duration-300 hover:border-white/40 hover:text-white"
                 >
                   View Resume ↗
                 </a>
@@ -128,7 +126,7 @@ export default function Contact() {
                 <a
                   href="/resume/Charan-Mahendaran-Resume.pdf"
                   download
-                  className="border border-white/10 px-5 py-3 text-[9px] uppercase tracking-[0.15em] text-white/40 transition-colors duration-300 hover:border-white/40 hover:text-white"
+                  className="border border-white/10 px-5 py-3 text-[9px] uppercase tracking-[0.15em] text-white/35 transition-all duration-300 hover:border-white/30 hover:text-white"
                 >
                   Download Resume ↓
                 </a>
