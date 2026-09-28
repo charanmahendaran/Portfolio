@@ -4,9 +4,10 @@ export default function About() {
       <div className="container-main flex min-h-[calc(100svh-200px)] flex-col">
         <span className="eyebrow">07 / About</span>
 
-        <div className="flex flex-1 items-center">
+        <div className="flex flex-1 items-center max-sm:items-start max-sm:pt-16">
           <div className="grid w-full gap-12 lg:grid-cols-[0.8fr_1.2fr] lg:gap-20">
-            {/* Left */}
+            {/* LEFT */}
+
             <div>
               <span className="font-mono text-[10px] font-medium uppercase tracking-[0.2em] text-white/40">
                 Built to engineer
@@ -19,9 +20,9 @@ export default function About() {
               </h2>
             </div>
 
-            {/* Right */}
-            <div className="min-w-0 max-w-4xl">
-              {/* Main statement */}
+            {/* RIGHT */}
+
+            <div className="about-copy min-w-0 max-w-4xl">
               <p className="text-xl font-medium leading-[1.25] tracking-[-0.035em] text-white/75 md:text-2xl lg:text-3xl">
                 From <span className="text-white">hardware-level systems</span>{" "}
                 to interactive digital experiences, I build across the layers —
@@ -31,7 +32,6 @@ export default function About() {
                 <span className="text-white">AI-driven automation</span>.
               </p>
 
-              {/* Supporting content */}
               <div className="mt-8 max-w-3xl space-y-6">
                 <p className="body-text">
                   My foundation in{" "}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+
 import Footer from "@/components/layout/Footer";
 
 const email = "charanmahendaran@gmail.com";
@@ -11,8 +12,14 @@ export default function Contact() {
 
   /*
    * ------------------------------------------------------------
-   * Contact curtain scroll progress
+   * Contact curtain behavior
    * ------------------------------------------------------------
+   *
+   * Desktop / landscape:
+   * cinematic scroll reveal.
+   *
+   * Mobile / portrait tablet:
+   * contact curtain is visible immediately.
    */
 
   useEffect(() => {
@@ -20,9 +27,29 @@ export default function Contact() {
 
     if (!section) return;
 
+    const isPortraitContactLayout = () => {
+      return (
+        window.matchMedia("(orientation: portrait)").matches &&
+        window.innerWidth <= 1023
+      );
+    };
+
     let frame = 0;
 
     const updateProgress = () => {
+      /*
+       * Mobile + portrait tablet:
+       * keep the contact curtain completely open.
+       */
+      if (isPortraitContactLayout()) {
+        section.style.setProperty("--contact-progress", "1");
+        frame = 0;
+        return;
+      }
+
+      /*
+       * Desktop / landscape behavior.
+       */
       const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight;
 
@@ -30,27 +57,13 @@ export default function Contact() {
 
       const rawProgress = Math.min(Math.max(-rect.top / scrollDistance, 0), 1);
 
-      /*
-       * Keep the curtain completely still for the first 30%
-       * of the Contact scroll.
-       */
       const start = 0.3;
 
-      /*
-       * The curtain uses the remaining 70% of the
-       * scroll distance to complete its movement.
-       */
       const revealProgress = Math.min(
         Math.max((rawProgress - start) / (1 - start), 0),
         1,
       );
 
-      /*
-       * Smooth ease-out:
-       * - very gentle start
-       * - faster movement through the middle
-       * - soft landing at the end
-       */
       const easedProgress = 1 - Math.pow(1 - revealProgress, 3);
 
       section.style.setProperty("--contact-progress", easedProgress.toString());
@@ -72,9 +85,12 @@ export default function Contact() {
 
     window.addEventListener("resize", requestUpdate);
 
+    window.addEventListener("orientationchange", requestUpdate);
+
     return () => {
       window.removeEventListener("scroll", requestUpdate);
       window.removeEventListener("resize", requestUpdate);
+      window.removeEventListener("orientationchange", requestUpdate);
 
       if (frame) {
         window.cancelAnimationFrame(frame);
@@ -106,7 +122,7 @@ export default function Contact() {
     <section
       id="contact"
       ref={sectionRef}
-      className="relative min-h-[135svh] overflow-clip bg-[var(--section-about)]"
+      className="relative min-h-[135svh] overflow-clip bg-[#0a0a0a]"
       style={
         {
           "--contact-progress": 0,
@@ -118,25 +134,12 @@ export default function Contact() {
             UNDERLYING CONTACT STATEMENT
             ===================================================== */}
 
-        <div
-          className="absolute inset-0 z-0"
-          style={{
-            background: `
-      linear-gradient(
-        to bottom,
-        var(--section-about) 0%,
-        var(--section-about) 8%,
-        var(--section-contact) 22%,
-        var(--section-contact) 100%
-      )
-    `,
-          }}
-        >
+        <div className="absolute inset-0 z-0 bg-[#0a0a0a]">
           <div className="container-main flex h-full flex-col pt-[64px]">
-            <div className="flex flex-1 flex-col pt-[clamp(80px,10vh,140px)]">
+            <div className="flex flex-1 flex-col pt-[clamp(50px,7vh,110px)]">
               <span className="eyebrow">08 / Contact</span>
 
-              <h2 className="mt-12 max-w-6xl text-[clamp(3.5rem,9vw,9rem)] font-medium leading-[0.85] tracking-[-0.07em]">
+              <h2 className="mt-8 max-w-6xl text-[clamp(3.5rem,9vw,9rem)] font-medium leading-[0.85] tracking-[-0.07em]">
                 LET&apos;S BUILD
                 <br />
                 <span className="text-white/25">
@@ -144,7 +147,7 @@ export default function Contact() {
                 </span>
               </h2>
 
-              <p className="mt-10 max-w-xl text-lg leading-8 text-white/40">
+              <p className="mt-7 max-w-xl text-base leading-7 text-white/40 md:mt-10 md:text-lg md:leading-8">
                 Have an idea, a problem worth solving, or something interesting
                 you want to build?
               </p>
@@ -157,7 +160,7 @@ export default function Contact() {
             ===================================================== */}
 
         <div
-          className="absolute inset-x-0 bottom-0 z-10 flex h-[68svh] max-h-[620px] min-h-[460px] flex-col overflow-hidden border-t border-white/10 bg-[#0a0a0a]/96 shadow-[0_-30px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl will-change-transform"
+          className="contact-curtain absolute inset-x-0 bottom-0 z-10 flex h-[68svh] max-h-[620px] min-h-[460px] flex-col overflow-hidden border-t border-white/10 bg-[#0a0a0a]/96 shadow-[0_-30px_80px_rgba(0,0,0,0.35)] backdrop-blur-xl will-change-transform"
           style={{
             transform: "translateY(calc((1 - var(--contact-progress)) * 100%))",
           }}
@@ -167,33 +170,31 @@ export default function Contact() {
                 CONTACT CONTENT
                 ================================================= */}
 
-            <div className="flex min-h-0 flex-1 items-center py-10 md:py-12">
-              <div className="grid w-full gap-14 lg:grid-cols-2 lg:gap-20">
-                {/* ---------------------------------------------
-                    DIRECT INQUIRIES
-                    --------------------------------------------- */}
+            <div className="flex min-h-0 flex-1 items-center py-7 md:py-12">
+              <div className="grid w-full gap-9 lg:grid-cols-2 lg:gap-20">
+                {/* DIRECT INQUIRIES */}
 
                 <div className="flex flex-col justify-center">
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-white/30">
+                  <span className="text-[9px] uppercase tracking-[0.18em] text-white/30">
                     Direct inquiries
                   </span>
 
                   <button
                     type="button"
                     onClick={copyEmail}
-                    className="group mt-5 flex w-fit items-center text-left"
+                    className="group mt-4 flex w-fit items-center text-left"
                     aria-label="Copy email address"
                   >
-                    <span className="text-[clamp(1.6rem,2.7vw,2.6rem)] font-medium leading-none tracking-[-0.045em] text-white/75 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white">
+                    <span className="text-[clamp(1.35rem,2.7vw,2.6rem)] font-medium leading-none tracking-[-0.045em] text-white/75 transition-all duration-300 group-hover:translate-x-1 group-hover:text-white">
                       {email}
                     </span>
 
-                    <span className="ml-3 text-sm text-white/25 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white">
+                    <span className="ml-2 text-sm text-white/25 transition-all duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-white">
                       {copied ? "✓" : "↗"}
                     </span>
 
                     <span
-                      className={`ml-3 whitespace-nowrap text-[9px] uppercase tracking-[0.15em] transition-all duration-300 ${
+                      className={`ml-2 whitespace-nowrap text-[9px] uppercase tracking-[0.15em] transition-all duration-300 ${
                         copied
                           ? "translate-x-0 opacity-100 text-white/50"
                           : "pointer-events-none -translate-x-1 opacity-0"
@@ -204,26 +205,24 @@ export default function Contact() {
                     </span>
                   </button>
 
-                  <p className="mt-5 text-[10px] uppercase tracking-[0.17em] text-white/25">
+                  <p className="mt-4 text-[9px] uppercase tracking-[0.17em] text-white/25">
                     Available for full-time roles
                   </p>
                 </div>
 
-                {/* ---------------------------------------------
-                    CONNECT + RESUME
-                    --------------------------------------------- */}
+                {/* CONNECT + RESUME */}
 
                 <div className="flex flex-col justify-center lg:items-end">
-                  <span className="text-[10px] uppercase tracking-[0.18em] text-white/30">
+                  <span className="text-[9px] uppercase tracking-[0.18em] text-white/30">
                     Connect &amp; resume
                   </span>
 
-                  <div className="mt-5 flex flex-wrap gap-x-10 gap-y-4 lg:justify-end">
+                  <div className="mt-4 flex flex-wrap gap-x-8 gap-y-3 lg:justify-end">
                     <a
                       href="https://github.com/charanmahendaran"
                       target="_blank"
                       rel="noreferrer"
-                      className="group flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-white/55 transition-colors duration-300 hover:text-white"
+                      className="group flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-white/55 transition-colors duration-300 hover:text-white"
                     >
                       GitHub
                       <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
@@ -235,7 +234,7 @@ export default function Contact() {
                       href="https://www.linkedin.com/in/charanmahendaran/"
                       target="_blank"
                       rel="noreferrer"
-                      className="group flex items-center gap-2 text-xs uppercase tracking-[0.15em] text-white/55 transition-colors duration-300 hover:text-white"
+                      className="group flex items-center gap-2 text-[10px] uppercase tracking-[0.15em] text-white/55 transition-colors duration-300 hover:text-white"
                     >
                       LinkedIn
                       <span className="transition-transform duration-300 group-hover:-translate-y-0.5 group-hover:translate-x-0.5">
@@ -244,12 +243,12 @@ export default function Contact() {
                     </a>
                   </div>
 
-                  <div className="mt-7 flex flex-wrap gap-3 lg:justify-end">
+                  <div className="mt-5 flex flex-wrap gap-2.5 lg:justify-end">
                     <a
                       href="/resume/Charan-Mahendaran-Resume.pdf"
                       target="_blank"
                       rel="noreferrer"
-                      className="border border-white/20 px-6 py-3.5 text-[9px] uppercase tracking-[0.16em] text-white/60 transition-all duration-300 hover:border-white/50 hover:text-white"
+                      className="border border-white/20 px-5 py-3 text-[8px] uppercase tracking-[0.16em] text-white/60 transition-all duration-300 hover:border-white/50 hover:text-white"
                     >
                       View Resume ↗
                     </a>
@@ -257,7 +256,7 @@ export default function Contact() {
                     <a
                       href="/resume/Charan-Mahendaran-Resume.pdf"
                       download
-                      className="border border-white/10 px-6 py-3.5 text-[9px] uppercase tracking-[0.16em] text-white/40 transition-all duration-300 hover:border-white/35 hover:text-white"
+                      className="border border-white/10 px-5 py-3 text-[8px] uppercase tracking-[0.16em] text-white/40 transition-all duration-300 hover:border-white/35 hover:text-white"
                     >
                       Download ↓
                     </a>
@@ -265,10 +264,6 @@ export default function Contact() {
                 </div>
               </div>
             </div>
-
-            {/* =================================================
-                INTEGRATED FOOTER
-                ================================================= */}
 
             <Footer />
           </div>

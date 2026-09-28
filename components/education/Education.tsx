@@ -108,14 +108,19 @@ export default function Education() {
               </span>
             </div>
 
-            {/* School information */}
+            {/* Education */}
             <div className="mt-7">
-              <div className="flex flex-col gap-5 md:flex-row md:items-baseline md:justify-between md:gap-10">
-                <h3 className="min-w-0 text-3xl font-medium leading-[0.92] tracking-[-0.05em] text-white md:text-5xl lg:text-6xl">
-                  {school.institution}
-                </h3>
+              <h3 className="min-w-0 text-3xl font-medium leading-[0.92] tracking-[-0.05em] text-white md:text-5xl lg:text-6xl">
+                {school.institution}
+              </h3>
 
-                <div className="flex shrink-0 items-baseline gap-3 md:gap-4">
+              {/* Qualification + Result */}
+              <div className="mt-5 flex items-baseline gap-6">
+                <span className="shrink-0 text-xs uppercase tracking-[0.12em] text-white/40">
+                  {school.degree}
+                </span>
+
+                <div className="flex items-baseline gap-3">
                   <span className="text-[9px] uppercase tracking-[0.15em] text-white/25">
                     Result
                   </span>
@@ -125,10 +130,6 @@ export default function Education() {
                   </span>
                 </div>
               </div>
-
-              <p className="mt-4 text-xs uppercase tracking-[0.12em] text-white/40">
-                {school.degree}
-              </p>
             </div>
           </article>
         </div>
