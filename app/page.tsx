@@ -46,10 +46,8 @@ export default function Home() {
       <div
         className={[
           "relative z-[90]",
-          "transition-[opacity,transform] duration-500 ease-out",
-          introComplete
-            ? "translate-y-0 opacity-100"
-            : "pointer-events-none translate-y-[-12px] opacity-0",
+          "transition-opacity duration-500 ease-out",
+          introComplete ? "opacity-100" : "pointer-events-none opacity-0",
         ].join(" ")}
       >
         <Navbar />
