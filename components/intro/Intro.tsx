@@ -2,6 +2,7 @@
 
 import { useCallback, useEffect, useRef, useState } from "react";
 import gsap from "gsap";
+
 import Loader from "@/components/loader/Loader";
 
 type IntroProps = {
@@ -15,9 +16,14 @@ const M_ENTRY_DURATION = 0.28;
 const MAHENDARAN_DURATION = 0.52;
 const SNAP_BACK_DURATION = 0.32;
 
+// Time required for the real Hero wrapper in page.tsx
+// to complete its existing opacity/transform transition.
+const HERO_HANDOFF_DELAY = 720;
+
 // Elevated luxury sapphire gradient
 const LUXURY_BLUE_BG =
   "radial-gradient(ellipse at 50% 50%, #0c1a30 0%, #060d19 100%)";
+
 const LUXURY_BLUE_SOLID = "#081324";
 
 export default function Intro({ onComplete }: IntroProps) {
@@ -51,12 +57,14 @@ export default function Intro({ onComplete }: IntroProps) {
   const timelineRef = useRef<gsap.core.Timeline | null>(null);
   const startedRef = useRef(false);
   const completedRef = useRef(false);
+  const handoffTimeoutRef = useRef<number | null>(null);
 
   /*
    * ------------------------------------------------------------
    * FINISH & CLEANUP
    * ------------------------------------------------------------
    */
+
   const finishIntro = useCallback(() => {
     if (completedRef.current) {
       return;
@@ -67,31 +75,22 @@ export default function Intro({ onComplete }: IntroProps) {
     timelineRef.current?.kill();
     timelineRef.current = null;
 
+    if (handoffTimeoutRef.current !== null) {
+      window.clearTimeout(handoffTimeoutRef.current);
+      handoffTimeoutRef.current = null;
+    }
+
     sessionStorage.setItem("introPlayed", "true");
 
-    // Clean up all body / html overflow locks so the navbar stays pinned on scroll
+    // Clean up all body / html overflow locks.
     document.body.style.overflow = "";
     document.documentElement.style.overflow = "";
 
     window.dispatchEvent(new Event("scroll"));
     window.dispatchEvent(new Event("resize"));
 
-    const overlay = overlayRef.current;
-    if (!overlay) {
-      setMounted(false);
-      onComplete?.();
-      return;
-    }
-
-    gsap.to(overlay, {
-      opacity: 0,
-      duration: 0.15,
-      ease: "power2.out",
-      onComplete: () => {
-        setMounted(false);
-        onComplete?.();
-      },
-    });
+    setMounted(false);
+    onComplete?.();
   }, [onComplete]);
 
   /*
@@ -99,6 +98,7 @@ export default function Intro({ onComplete }: IntroProps) {
    * START INTRO
    * ------------------------------------------------------------
    */
+
   const startIntro = useCallback(() => {
     if (startedRef.current || completedRef.current) {
       return;
@@ -154,7 +154,9 @@ export default function Intro({ onComplete }: IntroProps) {
 
     const charanLetters = Array.from(charan.children);
     const mahendaranLetters = Array.from(mahendaran.children);
+
     const isMobile = window.matchMedia("(max-width: 767px)").matches;
+
     const reducedMotion = window.matchMedia(
       "(prefers-reduced-motion: reduce)",
     ).matches;
@@ -172,6 +174,7 @@ export default function Intro({ onComplete }: IntroProps) {
      * INITIAL STATE
      * ------------------------------------------------------------
      */
+
     gsap.set(overlay, {
       opacity: 1,
       backgroundColor: "transparent",
@@ -263,8 +266,10 @@ export default function Intro({ onComplete }: IntroProps) {
      * PRECISE 0 CENTERING CALCULATIONS
      * ------------------------------------------------------------
      */
+
     const zeroRect = loaderMiddle.getBoundingClientRect();
     const zoomRect = loaderZoom.getBoundingClientRect();
+
     const viewportWidth = window.innerWidth;
     const viewportHeight = window.innerHeight;
 
@@ -302,11 +307,13 @@ export default function Intro({ onComplete }: IntroProps) {
     });
 
     const screenDiagonal = Math.hypot(viewportWidth, viewportHeight);
+
     const finalRevealScale = (screenDiagonal / revealSize) * 2.6;
 
     // Full 0 zoom-through scale: expands zero hole completely past the camera
     const scaleX = viewportWidth / Math.max(zeroRect.width, 1);
     const scaleY = viewportHeight / Math.max(zeroRect.height, 1);
+
     const finalZoomScale = Math.max(scaleX, scaleY) * 2.8;
 
     const dotWidth = dot.getBoundingClientRect().width;
@@ -316,6 +323,7 @@ export default function Intro({ onComplete }: IntroProps) {
      * TIMELINE
      * ------------------------------------------------------------
      */
+
     const timeline = gsap.timeline({
       paused: true,
     });
@@ -323,8 +331,11 @@ export default function Intro({ onComplete }: IntroProps) {
     timelineRef.current = timeline;
 
     /*
+     * ------------------------------------------------------------
      * 1. PREPARE HERO LAYER
+     * ------------------------------------------------------------
      */
+
     timeline.set(
       heroTransition,
       {
@@ -335,6 +346,7 @@ export default function Intro({ onComplete }: IntroProps) {
     );
 
     const loaderLine = loaderWrapper.querySelector('[data-loader-line="true"]');
+
     if (loaderLine) {
       timeline.set(
         loaderLine,
@@ -347,8 +359,11 @@ export default function Intro({ onComplete }: IntroProps) {
     }
 
     /*
-     * 2. FULL 0 ZOOM-THROUGH (Centered on middle 0, no pixelation)
+     * ------------------------------------------------------------
+     * 2. FULL 0 ZOOM-THROUGH
+     * ------------------------------------------------------------
      */
+
     timeline.to(
       loaderZoom,
       {
@@ -357,7 +372,7 @@ export default function Intro({ onComplete }: IntroProps) {
         y: shiftY,
         duration: ZERO_ZOOM_DURATION,
         ease: "power2.inOut",
-        force3D: false, // 2D matrix allows vector glyph re-rasterization without bitmap blurring
+        force3D: false,
       },
       0,
     );
@@ -374,8 +389,11 @@ export default function Intro({ onComplete }: IntroProps) {
     );
 
     /*
+     * ------------------------------------------------------------
      * 3. EXPANDING LUXURY BLUE FLOOD
+     * ------------------------------------------------------------
      */
+
     timeline.to(
       blueReveal,
       {
@@ -391,8 +409,11 @@ export default function Intro({ onComplete }: IntroProps) {
     );
 
     /*
+     * ------------------------------------------------------------
      * 4. DIGITS FADE
+     * ------------------------------------------------------------
      */
+
     timeline.to(
       [loaderFirst, loaderLast],
       {
@@ -404,8 +425,11 @@ export default function Intro({ onComplete }: IntroProps) {
     );
 
     /*
+     * ------------------------------------------------------------
      * 5. BLUE DOMAIN ACTIVE
+     * ------------------------------------------------------------
      */
+
     timeline.set(
       blueBackground,
       {
@@ -424,8 +448,11 @@ export default function Intro({ onComplete }: IntroProps) {
     );
 
     /*
+     * ------------------------------------------------------------
      * 6. CHARAN ENTERS 0.5s EARLIER
+     * ------------------------------------------------------------
      */
+
     const nameStartTime = Math.max(0, ZERO_ZOOM_DURATION - 0.5);
 
     timeline.to(
@@ -447,8 +474,11 @@ export default function Intro({ onComplete }: IntroProps) {
     );
 
     /*
+     * ------------------------------------------------------------
      * 7. M.
+     * ------------------------------------------------------------
      */
+
     timeline.to(
       secondLine,
       {
@@ -469,8 +499,11 @@ export default function Intro({ onComplete }: IntroProps) {
     );
 
     /*
+     * ------------------------------------------------------------
      * 8. M. -> MAHENDARAN
+     * ------------------------------------------------------------
      */
+
     const expandStart = nameStartTime + CHARAN_DURATION + 0.32;
 
     timeline.to(
@@ -512,8 +545,11 @@ export default function Intro({ onComplete }: IntroProps) {
     );
 
     /*
-     * 9. MAHENDARAN -> M. (Snap Back to Hero State)
+     * ------------------------------------------------------------
+     * 9. MAHENDARAN -> M.
+     * ------------------------------------------------------------
      */
+
     timeline.addLabel("snap", "+=0.35");
 
     timeline.to(
@@ -561,10 +597,16 @@ export default function Intro({ onComplete }: IntroProps) {
     );
 
     /*
-     * 10. SEAMLESS HERO INTEGRATION (ZERO BLINK)
-     * Name "CHARAN M." stays fixed in place.
-     * The blue background dissolves while the remaining Hero elements unblur smoothly.
+     * ------------------------------------------------------------
+     * 10. SEAMLESS HERO INTEGRATION
+     *
+     * The real Hero is still hidden underneath at this point.
+     * onComplete() starts its existing 700ms transition.
+     * The Intro remains mounted during that transition.
+     * Only after the transition has completed is the Intro removed.
+     * ------------------------------------------------------------
      */
+
     const revealStart = `snap+=${SNAP_BACK_DURATION + 0.04}`;
 
     timeline.to(
@@ -602,20 +644,38 @@ export default function Intro({ onComplete }: IntroProps) {
 
     timeline.call(
       () => {
-        finishIntro();
+        if (completedRef.current) {
+          return;
+        }
+
+        sessionStorage.setItem("introPlayed", "true");
+
+        // Start the existing Hero transition in page.tsx.
+        onComplete?.();
+
+        // Keep the Intro mounted until the Hero's existing
+        // 700ms opacity/transform transition has completed.
+        handoffTimeoutRef.current = window.setTimeout(() => {
+          handoffTimeoutRef.current = null;
+
+          if (!completedRef.current) {
+            setMounted(false);
+          }
+        }, HERO_HANDOFF_DELAY);
       },
       undefined,
       `revealStart+=0.42`,
     );
 
     timeline.play();
-  }, [finishIntro]);
+  }, [finishIntro, onComplete]);
 
   /*
    * ------------------------------------------------------------
    * SESSION CONTROL
    * ------------------------------------------------------------
    */
+
   useEffect(() => {
     if (typeof window === "undefined") {
       return;
@@ -625,9 +685,12 @@ export default function Intro({ onComplete }: IntroProps) {
 
     if (alreadyPlayed === "true") {
       setMounted(false);
+
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
+
       onComplete?.();
+
       return;
     }
 
@@ -648,8 +711,15 @@ export default function Intro({ onComplete }: IntroProps) {
 
     return () => {
       window.removeEventListener("keydown", handleKeyDown);
+
       document.body.style.overflow = "";
       document.documentElement.style.overflow = "";
+
+      if (handoffTimeoutRef.current !== null) {
+        window.clearTimeout(handoffTimeoutRef.current);
+        handoffTimeoutRef.current = null;
+      }
+
       timelineRef.current?.kill();
       timelineRef.current = null;
     };
@@ -701,7 +771,7 @@ export default function Intro({ onComplete }: IntroProps) {
       {/*
        * ==========================================================
        * HERO TRANSITION LAYER
-       * Matches Hero.tsx pixel-for-pixel with zero shift and zero blink
+       * Matches Hero.tsx pixel-for-pixel
        * ==========================================================
        */}
       <div
@@ -762,9 +832,11 @@ export default function Intro({ onComplete }: IntroProps) {
                     <span ref={mRef} className="inline-block align-baseline">
                       M
                     </span>
+
                     <span ref={dotRef} className="inline-block align-baseline">
                       .
                     </span>
+
                     <span
                       ref={mahendaranRef}
                       className="inline whitespace-nowrap"

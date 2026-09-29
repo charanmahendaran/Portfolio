@@ -35,13 +35,11 @@ export default function Home() {
 
   return (
     <>
-      {!introComplete && (
-        <Intro
-          onComplete={() => {
-            setIntroComplete(true);
-          }}
-        />
-      )}
+      <Intro
+        onComplete={() => {
+          setIntroComplete(true);
+        }}
+      />
 
       <div
         className={[
